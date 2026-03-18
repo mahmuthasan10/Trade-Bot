@@ -1,0 +1,31 @@
+# Master Trading Bot v3.0 - Faz 1: Altyapı ve Veri Katmanı
+# Python 3.11+ zorunludur
+
+# ── Async Çekirdek ───────────────────────────────────────────────
+asyncio-mqtt>=0.16.1          # Async pattern referansı
+uvloop>=0.19.0; sys_platform != 'win32'  # Linux/Mac async hızlandırma
+
+# ── Borsa Entegrasyonu ───────────────────────────────────────────
+ccxt>=4.2.0                   # ccxt.pro (async WebSocket) dahil
+alpaca-py>=0.21.0             # US Stocks async feed
+
+# ── Redis (Async) ────────────────────────────────────────────────
+redis[hiredis]>=5.0.0         # hiredis C parser ile hızlı async redis
+
+# ── PostgreSQL / TimescaleDB (Async) ─────────────────────────────
+asyncpg>=0.29.0               # Async PostgreSQL driver
+sqlalchemy[asyncio]>=2.0.0    # ORM (opsiyonel, raw query de kullanılabilir)
+
+# ── Veri İşleme ──────────────────────────────────────────────────
+numpy>=1.26.0
+pandas>=2.1.0
+
+# ── Konfigürasyon ────────────────────────────────────────────────
+python-dotenv>=1.0.0
+
+# ── Test ─────────────────────────────────────────────────────────
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+
+# ── NOT: TA-Lib, pandas-ta gibi indikatör kütüphaneleri ─────────
+# Faz 2'de eklenecek. Şu an SADECE altyapı katmanı.
