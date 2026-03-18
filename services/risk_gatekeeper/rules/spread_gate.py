@@ -137,7 +137,7 @@ class SpreadGatekeeper:
         await self._pubsub.subscribe(*channels)
 
         logger.info(
-            "SpreadGatekeeper bağlandı | %d kanal | eşik=%.1f×",
+            "SpreadGatekeeper baglandi | %d kanal | esik=%.1fx",
             len(channels),
             SPREAD_REJECTION_MULTIPLIER,
         )
@@ -206,8 +206,8 @@ class SpreadGatekeeper:
             self._reject_count += 1
             detail = (
                 f"SPREAD_BLOCK: {symbol} | anlık={current:.4f}% | "
-                f"60dk_ort={avg:.4f}% | oran={ratio:.1f}× > "
-                f"eşik={SPREAD_REJECTION_MULTIPLIER:.1f}×"
+                f"60dk_ort={avg:.4f}% | oran={ratio:.1f}x > "
+                f"esik={SPREAD_REJECTION_MULTIPLIER:.1f}x"
             )
             logger.warning(detail)
             return (False, ratio, detail)
@@ -216,8 +216,8 @@ class SpreadGatekeeper:
         return (
             True,
             ratio,
-            f"Spread OK: {symbol} | oran={ratio:.1f}× ≤ "
-            f"{SPREAD_REJECTION_MULTIPLIER:.1f}×",
+            f"Spread OK: {symbol} | oran={ratio:.1f}x <= "
+            f"{SPREAD_REJECTION_MULTIPLIER:.1f}x",
         )
 
     async def close(self) -> None:

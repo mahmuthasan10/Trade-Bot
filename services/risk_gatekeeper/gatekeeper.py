@@ -421,7 +421,7 @@ class RiskGatekeeper:
         self._approved_count += 1
 
         logger.info(
-            "✓ ONAYLANDI [#%d] | %s %s | lot=%.6f (×%.2f) | "
+            "[ONAY] #%d | %s %s | lot=%.6f (x%.2f) | "
             "stop=%.2f | tp1=%.2f | tp2=%.2f | risk=%.3f%%",
             self._approved_count,
             order.symbol,
@@ -466,7 +466,7 @@ class RiskGatekeeper:
         self._rejected_count += 1
 
         logger.warning(
-            "✗ REDDEDİLDİ [#%d] | %s %s | sebep=%s | %s",
+            "[RED] #%d | %s %s | sebep=%s | %s",
             self._rejected_count,
             symbol,
             side.value,

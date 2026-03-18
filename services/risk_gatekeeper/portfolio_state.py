@@ -190,8 +190,8 @@ class PortfolioStateManager:
             "cleared_at": "",
         })
         logger.warning(
-            "⚠ RECOVERY MODU AKTİF | Lot çarpanı=%.2f | "
-            "Çıkış koşulu: %d ardışık kâr",
+            "RECOVERY MODU AKTIF | Lot carpani=%.2f | "
+            "Cikis kosulu: %d ardisik kar",
             RECOVERY_LOT_MULTIPLIER,
             RECOVERY_CONSECUTIVE_WINS_REQUIRED,
         )
@@ -234,8 +234,8 @@ class PortfolioStateManager:
             "cleared_at": str(time.time()),
         })
         logger.info(
-            "✓ Recovery modu TEMİZLENDİ | %d ardışık kâr sağlandı | "
-            "Normal moda dönüldü",
+            "Recovery modu TEMIZLENDI | %d ardisik kar saglandi | "
+            "Normal moda donuldu",
             RECOVERY_CONSECUTIVE_WINS_REQUIRED,
         )
 
