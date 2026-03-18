@@ -8,9 +8,9 @@
 - [x] Gelen canlı verinin (Fiyat, Hacim, Spread) Redis Pub/Sub'a aktarılması.
 
 ## [cite_start]Faz 2: Gösterge ve Sinyal Motoru (Süre: 1-2 Hafta) 
-- [ ] Redis'ten tick datasını alıp 5m ve 15m mumları (OHLCV) oluşturan sınıfın yazılması.
-- [ ] `TA-Lib` ile temel göstergelerin (MA, MACD, ADX, ATR, RSI, VWAP) hesaplanması.
-- [ ] [cite_start]Unified Sinyal Skoru formülünün (0-100 puan arası) kodlanması[cite: 130].
+- [x] Redis'ten tick datasını alıp 5m ve 15m mumları (OHLCV) oluşturan sınıfın yazılması.
+- [x] `TA-Lib` ile temel göstergelerin (MA, MACD, ADX, ATR, RSI, VWAP) hesaplanması.
+- [x] [cite_start]Unified Sinyal Skoru formülünün (0-100 puan arası) kodlanması[cite: 130].
 
 ## [cite_start]Faz 3: Risk ve Karar Motoru (Süre: 1 Hafta) - KRİTİK BİLEŞEN 
 - [ ] [cite_start]Portföy düzeyinde Kümülatif Net PnL hesaplayıcısının (Layer 1) yazılması[cite: 116].
