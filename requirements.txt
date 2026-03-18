@@ -6,7 +6,8 @@ asyncio-mqtt>=0.16.1          # Async pattern referansı
 uvloop>=0.19.0; sys_platform != 'win32'  # Linux/Mac async hızlandırma
 
 # ── Borsa Entegrasyonu ───────────────────────────────────────────
-ccxt>=4.2.0                   # ccxt.pro (async WebSocket) dahil
+ccxt>=4.2.0                   # REST ve temel entegrasyonlar
+# Not: ccxt.pro lisanslı dağıtımdır; erişimin varsa özel wheel/tarball olarak kurulur.
 alpaca-py>=0.21.0             # US Stocks async feed
 
 # ── Redis (Async) ────────────────────────────────────────────────
