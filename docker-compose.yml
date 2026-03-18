@@ -1,0 +1,83 @@
+# Master Trading Bot v3.0 - Altyapı Servisleri
+# Faz 1: Redis (Pub/Sub + State) + TimescaleDB (PostgreSQL)
+#
+# Kullanım:
+#   docker compose up -d
+#   docker compose ps          (sağlık kontrolü)
+#   docker compose logs -f     (logları takip et)
+
+services:
+  # ── Redis: Servisler arası mesajlaşma (Pub/Sub) ve hızlı state ──
+  redis:
+    image: redis:7-alpine
+    container_name: trading-redis
+    ports:
+      - "${REDIS_PORT:-6381}:6379"
+    volumes:
+      - redis_data:/data
+    command: >
+      redis-server
+      --appendonly yes
+      --maxmemory 512mb
+      --maxmemory-policy allkeys-lru
+      --save 60 1000
+      --tcp-backlog 511
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+    networks:
+      - trading-net
+
+  # ── TimescaleDB: Tick verileri, mum verileri ve işlem geçmişi ──
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    container_name: trading-timescaledb
+    ports:
+      - "${PG_PORT:-5433}:5432"
+    environment:
+      POSTGRES_USER: ${PG_USER:-trading}
+      POSTGRES_PASSWORD: ${PG_PASSWORD:-trading_secret}
+      POSTGRES_DB: ${PG_DB:-trading_bot}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - pg_data:/var/lib/postgresql/data/pgdata
+      - ./migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trading -d trading_bot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+    networks:
+      - trading-net
+
+  # ── RedisInsight: Redis'i tarayıcıdan izlemek için (opsiyonel) ──
+  redis-insight:
+    image: redis/redisinsight:latest
+    container_name: trading-redis-insight
+    ports:
+      - "5540:5540"
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - trading-net
+    profiles:
+      - monitoring
+
+volumes:
+  redis_data:
+    driver: local
+  pg_data:
+    driver: local
+
+networks:
+  trading-net:
+    driver: bridge
+    name: trading-network

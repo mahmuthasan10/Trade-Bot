@@ -1,8 +1,8 @@
 # Master Bot v3.0 - Deployment & Progress Roadmap
 
 ## [cite_start]Faz 1: Altyapı ve Veri Katmanı (Süre: 1 Hafta) 
-- [ ] GitHub reposunun ve klasör yapısının oluşturulması.
-- [ ] Docker-compose ile Redis ve PostgreSQL (TimescaleDB) ayağa kaldırılması.
+- [x] GitHub reposunun ve klasör yapısının oluşturulması.
+- [x] Docker-compose ile Redis ve PostgreSQL (TimescaleDB) ayağa kaldırılması.
 - [ ] `ccxt.pro` entegrasyonu ile Binance/Bybit üzerinden async WebSocket bağlantılarının kurulması.
 - [ ] Veri kopmalarına (disconnect) karşı `auto-reconnect` mekanizmasının yazılması.
 - [ ] Gelen canlı verinin (Fiyat, Hacim, Spread) Redis Pub/Sub'a aktarılması.
