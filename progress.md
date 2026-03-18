@@ -3,9 +3,9 @@
 ## [cite_start]Faz 1: Altyapı ve Veri Katmanı (Süre: 1 Hafta) 
 - [x] GitHub reposunun ve klasör yapısının oluşturulması.
 - [x] Docker-compose ile Redis ve PostgreSQL (TimescaleDB) ayağa kaldırılması.
-- [ ] `ccxt.pro` entegrasyonu ile Binance/Bybit üzerinden async WebSocket bağlantılarının kurulması.
-- [ ] Veri kopmalarına (disconnect) karşı `auto-reconnect` mekanizmasının yazılması.
-- [ ] Gelen canlı verinin (Fiyat, Hacim, Spread) Redis Pub/Sub'a aktarılması.
+- [x] `ccxt.pro` entegrasyonu ile Binance/Bybit üzerinden async WebSocket bağlantılarının kurulması.
+- [x] Veri kopmalarına (disconnect) karşı `auto-reconnect` mekanizmasının yazılması.
+- [x] Gelen canlı verinin (Fiyat, Hacim, Spread) Redis Pub/Sub'a aktarılması.
 
 ## [cite_start]Faz 2: Gösterge ve Sinyal Motoru (Süre: 1-2 Hafta) 
 - [ ] Redis'ten tick datasını alıp 5m ve 15m mumları (OHLCV) oluşturan sınıfın yazılması.
