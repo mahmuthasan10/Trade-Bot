@@ -7,17 +7,17 @@
 - [x] Veri kopmalarına (disconnect) karşı `auto-reconnect` mekanizmasının yazılması.
 - [x] Gelen canlı verinin (Fiyat, Hacim, Spread) Redis Pub/Sub'a aktarılması.
 
-## [cite_start]Faz 2: Gösterge ve Sinyal Motoru (Süre: 1-2 Hafta) 
+## [cite_start]Faz 2: Gösterge ve Sinyal Motoru (Süre: 1-2 Hafta) ✅
 - [x] Redis'ten tick datasını alıp 5m ve 15m mumları (OHLCV) oluşturan sınıfın yazılması.
 - [x] `TA-Lib` ile temel göstergelerin (MA, MACD, ADX, ATR, RSI, VWAP) hesaplanması.
 - [x] [cite_start]Unified Sinyal Skoru formülünün (0-100 puan arası) kodlanması[cite: 130].
 
-## [cite_start]Faz 3: Risk ve Karar Motoru (Süre: 1 Hafta) - KRİTİK BİLEŞEN 
-- [ ] [cite_start]Portföy düzeyinde Kümülatif Net PnL hesaplayıcısının (Layer 1) yazılması[cite: 116].
-- [ ] [cite_start]Hard Kill (-%10) mekanizmasının entegrasyonu[cite: 118].
-- [ ] [cite_start]Spread Gatekeeper (Anlık > 2.0x ortalama ise işlemi reddet) kodlaması[cite: 127].
-- [ ] [cite_start]Adaptif ATR (Düşük/Yüksek volatilite çarpanları x1.2 / x1.5) hesaplanması[cite: 87].
-- [ ] [cite_start]Recovery Mode (Ertesi gün Lot %50) mantığının state olarak tutulması[cite: 125].
+## [cite_start]Faz 3: Risk ve Karar Motoru (Süre: 1 Hafta) - KRİTİK BİLEŞEN ✅
+- [x] [cite_start]Portföy düzeyinde Kümülatif Net PnL hesaplayıcısının (Layer 1) yazılması[cite: 116].
+- [x] [cite_start]Hard Kill (-%10) mekanizmasının entegrasyonu[cite: 118].
+- [x] [cite_start]Spread Gatekeeper (Anlık > 2.0x ortalama ise işlemi reddet) kodlaması[cite: 127].
+- [x] [cite_start]Adaptif ATR (Düşük/Yüksek volatilite çarpanları x1.2 / x1.5) hesaplanması[cite: 87].
+- [x] [cite_start]Recovery Mode (Ertesi gün Lot %50) mantığının state olarak tutulması[cite: 125].
 
 ## Faz 4: Emir ve Uygulama (Execution) Motoru (Süre: 1 Hafta)
 - [ ] Risk onayından geçen sinyallerin borsaya Async Emir (Market/Limit) olarak iletilmesi.
