@@ -1,4 +1,4 @@
-# Master Trading Bot v3.0 - Faz 1: Altyapı ve Veri Katmanı
+# Master Trading Bot v3.0 - Faz 1 + Faz 2: Altyapı + Strateji Motoru
 # Python 3.11+ zorunludur
 
 # ── Async Çekirdek ───────────────────────────────────────────────
@@ -28,5 +28,5 @@ python-dotenv>=1.0.0
 pytest>=7.4.0
 pytest-asyncio>=0.23.0
 
-# ── NOT: TA-Lib, pandas-ta gibi indikatör kütüphaneleri ─────────
-# Faz 2'de eklenecek. Şu an SADECE altyapı katmanı.
+# ── Faz 2: Teknik İndikatörler ──────────────────────────────────
+pandas-ta>=0.3.14b1             # TA-Lib alternatifi (pure Python, kolay kurulum)
