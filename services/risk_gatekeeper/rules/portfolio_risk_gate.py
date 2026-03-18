@@ -110,8 +110,8 @@ class PortfolioRiskGate:
         if risk_level == RiskLevel.HARD_KILL:
             self._kill_triggered = True
             detail = (
-                "🔴 HARD KILL: Net PnL >-%10 eşiğini aştı | "
-                "Tüm yeni emirler DURDURULDU | Recovery modu tetiklenecek"
+                "HARD KILL: Net PnL >-10% esigini asti | "
+                "Tum yeni emirler DURDURULDU | Recovery modu tetiklenecek"
             )
             logger.critical(detail)
             return RiskGateResult(
@@ -126,9 +126,9 @@ class PortfolioRiskGate:
         # ── EMERGENCY: Sistem donduruldu ──
         if risk_level == RiskLevel.EMERGENCY:
             detail = (
-                f"🟠 EMERGENCY: Net PnL -%8-10 bandında | "
-                f"lot×{lot_mult} | max_poz={max_pos} | "
-                f"Yeni pozisyon çok kısıtlı"
+                f"EMERGENCY: Net PnL -8-10% bandinda | "
+                f"lot x{lot_mult} | max_poz={max_pos} | "
+                f"Yeni pozisyon cok kisitli"
             )
             logger.warning(detail)
             # Emergency'de yeni pozisyon açmaya izin ver ama çok kısıtlı
@@ -162,7 +162,7 @@ class PortfolioRiskGate:
         # ── Geçiş ──
         detail = (
             f"Portfolio Risk OK | seviye={risk_level.name} | "
-            f"lot×{lot_mult} | ek_skor=+{extra_score} | "
+            f"lot x{lot_mult} | ek_skor=+{extra_score} | "
             f"poz={current_open_positions}/{max_pos}"
         )
         logger.debug(detail)
