@@ -52,8 +52,8 @@ class RedisConfig:
 class PostgresConfig:
     host: str = field(default_factory=lambda: _env("PG_HOST", "localhost"))
     port: int = field(default_factory=lambda: _env_int("PG_PORT", 5433))
-    user: str = field(default_factory=lambda: _env("PG_USER", "trading"))
-    password: str = field(default_factory=lambda: _env("PG_PASSWORD", "trading_secret"))
+    user: str = field(default_factory=lambda: _env("PG_USER"))
+    password: str = field(default_factory=lambda: _env("PG_PASSWORD"))
     database: str = field(default_factory=lambda: _env("PG_DB", "trading_bot"))
 
     @property

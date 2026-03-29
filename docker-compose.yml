@@ -39,15 +39,15 @@ services:
     ports:
       - "${PG_PORT:-5433}:5432"
     environment:
-      POSTGRES_USER: ${PG_USER:-trading}
-      POSTGRES_PASSWORD: ${PG_PASSWORD:-trading_secret}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
       POSTGRES_DB: ${PG_DB:-trading_bot}
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - pg_data:/var/lib/postgresql/data/pgdata
       - ./migrations:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U trading -d trading_bot"]
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER} -d ${PG_DB:-trading_bot}"]
       interval: 10s
       timeout: 5s
       retries: 5
