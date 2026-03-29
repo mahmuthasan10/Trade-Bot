@@ -29,6 +29,10 @@ def _env_float(key: str, default: float = 0.0) -> float:
     return float(os.environ.get(key, default))
 
 
+def _env_bool(key: str, default: bool = False) -> bool:
+    return os.environ.get(key, str(default)).lower() in ("true", "1", "yes")
+
+
 # ── Redis ────────────────────────────────────────────────────────
 @dataclass(frozen=True)
 class RedisConfig:
@@ -65,14 +69,14 @@ class PostgresConfig:
 class BinanceConfig:
     api_key: str = field(default_factory=lambda: _env("BINANCE_API_KEY"))
     api_secret: str = field(default_factory=lambda: _env("BINANCE_API_SECRET"))
-    testnet: bool = True
+    testnet: bool = field(default_factory=lambda: _env_bool("BINANCE_TESTNET", True))
 
 
 @dataclass(frozen=True)
 class BybitConfig:
     api_key: str = field(default_factory=lambda: _env("BYBIT_API_KEY"))
     api_secret: str = field(default_factory=lambda: _env("BYBIT_API_SECRET"))
-    testnet: bool = True
+    testnet: bool = field(default_factory=lambda: _env_bool("BYBIT_TESTNET", True))
 
 
 @dataclass(frozen=True)
@@ -100,5 +104,29 @@ class Settings:
     environment: str = field(default_factory=lambda: _env("ENVIRONMENT", "development"))
 
 
+def _validate_settings(s: Settings) -> None:
+    """Başlangıçta kritik ayarları doğrula."""
+    import sys
+
+    if s.environment == "production":
+        errors: list[str] = []
+        if not s.binance.api_key or not s.binance.api_secret:
+            errors.append("BINANCE_API_KEY ve BINANCE_API_SECRET production ortamında zorunludur")
+        if s.binance.testnet:
+            errors.append("BINANCE_TESTNET=true iken ENVIRONMENT=production olamaz")
+        if errors:
+            for e in errors:
+                print(f"[HATA] {e}", file=sys.stderr)
+            sys.exit(1)
+
+    if not s.binance.testnet and (not s.binance.api_key or not s.binance.api_secret):
+        print(
+            "[UYARI] BINANCE_TESTNET=false ama API key boş! "
+            "Gerçek işlem yapılamaz.",
+            file=sys.stderr,
+        )
+
+
 # Singleton erişim
 settings = Settings()
+_validate_settings(settings)
